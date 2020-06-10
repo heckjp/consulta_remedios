@@ -3,7 +3,7 @@
         <b-col sm="12" md="3">
         <h1>Games</h1>
         </b-col>
-        <b-col sm="12" md="3" offset-md="3">
+        <b-col sm="12" md="2" offset-md="4">
             <b-form-select>
                 <b-form-select-option>Mais populares</b-form-select-option>
             </b-form-select>
@@ -11,7 +11,7 @@
        <b-col sm="12" md="3">
            <div class="cart">
                <h4 class="float-left">Carrinho</h4>
-               <p><b-icon icon="cart-plus" font-scale="3"></b-icon></p>
+               <p><b-img class="cart-img" :src="require('../assets/cart-icon.svg')" fluid></b-img></p>
                 <p>Até o momento seu carrinho está vazio</p>
             </div>
        </b-col> 
@@ -21,10 +21,19 @@
 
 <script>
     export default {
-        name:'Header'
+        
     }
 </script>
 
 <style scoped>
+
+.cart{
+    border: 1px solid;
+    max-width:50%;  
+}
+
+.cart-img{
+    margin:5px;
+}
 
 </style>

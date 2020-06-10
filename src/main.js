@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import {BootstrapVue,BootstrapVueIcons} from 'bootstrap-vue';
 import App from './App.vue'
+import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.prototype.$http = axios
 
 
 Vue.use(BootstrapVue)
