@@ -2,10 +2,10 @@
     <div>
         <b-row>
           <b-col class="rounded" sm="12" md="3" v-for="produto in produtos" :key="produto.id">
-              <p><b-img  @mouseover="hover=produto.id" @mouseleave="hover=false" class="produto_imagem" :src="getImgUrl(produto.image)"></b-img></p>
+              <p><b-img  @mouseover="hover=produto.id" @mouseleave="hover=false" class="produto_imagem" :src="getImgUrl(produto.image)" v-on:click="addToCart(produto)"></b-img></p>
               <p v-if="hover!=produto.id">{{produto.name}}<br>
               {{produto.price}}</p>
-              <p v-if="hover==produto.id"><b-button variant="primary">Adicionar ao carrinho</b-button></p>
+              <p v-if="hover==produto.id">Adicionar ao carrinho</p>
               
               
         </b-col>
@@ -18,7 +18,8 @@
     data(){
     return {
       produtos:{},
-      hover:false
+      hover:false,
+      cart:[],
     }
   },
   methods:{
@@ -33,6 +34,22 @@
     getImgUrl(img) {
         return require('../assets/'+img)
     },
+    addToCart(produto){
+      if(this.$cookies.isKey('cart')){
+        this.cart.push(JSON.parse(this.$cookies.get('cart')));
+        if(this.cart.length>0){
+        if(this.cart.find(x=>x.id==produto.id)){
+          console.log('já existe');
+        } else{
+          this.cart.push(produto);
+          this.$cookies.set('cart',JSON.stringify(this.cart))
+        }}
+      } else{
+        this.cart.push(produto);
+        this.$cookies.set('cart',JSON.stringify(this.cart))
+      }
+      console.log(this.$cookies.get('cart'));
+    }
   },
   mounted(){
     this.getProdutos();
@@ -44,5 +61,8 @@
 .produto_imagem{
     background-color:#CCC;
     padding:10px;
+}
+.produto_imagem:hover{
+  cursor: pointer;
 }
 </style>
