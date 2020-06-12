@@ -14,7 +14,7 @@
        <b-col sm="12" md="3">
            <div class="cart">
                <h4 class="float-left">Carrinho</h4>
-               <div v-if="!cart">
+               <div v-if="!cart || cart.length==0">
                     <p><b-img class="cart-img" :src="require('../assets/cart-icon.svg')" fluid></b-img></p>
                     <p>Até o momento seu carrinho está vazio</p>
                </div>
@@ -37,16 +37,13 @@
     export default {
         data(){
             return{
-                cart:{}
+                cart:null
             }
         },
         methods:{
             removeFromCart: function(produto){
                var index=this.cart.indexOf(produto);
-               this.cart.splice(index,1);
-                if(this.$cookies.get('cart')!=null){
-                    this.cart = JSON.stringify(this.cart);
-                }
+               this.cart.splice(index,1); 
                this.$cookies.set('cart',this.cart);
             
             },

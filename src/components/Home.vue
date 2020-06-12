@@ -19,7 +19,7 @@
     return {
       produtos:{},
       hover:false,
-      cart:[],
+      cart:null,
     }
   },
   methods:{
@@ -35,20 +35,26 @@
         return require('../assets/'+img)
     },
     addToCart(produto){
+      this.cart = [];
       if(this.$cookies.isKey('cart')){
-        this.cart.push(JSON.parse(this.$cookies.get('cart')));
-        if(this.cart.length>0){
-        if(this.cart.find(x=>x.id==produto.id)){
-          console.log('já existe');
+      this.cart=JSON.parse(this.$cookies.get('cart'));
+        console.log(this.cart,'carrinho');
+        if(this.cart!=null){
+          if(this.cart.find(x=>x.id==produto.id)){
+            console.log('já existe');
+          } else{
+            this.cart.push(produto);
+            console.log(this.cart, 'carrinho else'); 
+          }
         } else{
+          this.cart = [];
           this.cart.push(produto);
-          this.$cookies.set('cart',JSON.stringify(this.cart))
-        }}
+        }
       } else{
         this.cart.push(produto);
-        this.$cookies.set('cart',JSON.stringify(this.cart))
       }
-      console.log(this.$cookies.get('cart'));
+      this.$cookies.set('cart',JSON.stringify(this.cart))
+      console.log(this.$cookies.get('cart',' carrinho fim do arquivo'));
     }
   },
   mounted(){
