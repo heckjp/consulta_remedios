@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-row>
-          <b-col class="rounded" sm="12" md="4" v-for="produto in produtos" :key="produto.id">
+          <b-col class="rounded" sm="12" md="4" v-for="produto in list" :key="produto.id">
               <p><b-img  @mouseover="hover=produto.id" @mouseleave="hover=false" class="produto_imagem" :src="getImgUrl(produto.image)" v-on:click="addToCart(produto)"></b-img></p>
               <p v-if="hover!=produto.id">{{produto.name}}<br>
               {{produto.price.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}}</p>
@@ -16,7 +16,7 @@
     data(){
     return {
       baseURL:window.location.origin,
-      produtos:{},
+      produtos:[],
       hover:false,
       cart:null,
     }
@@ -35,6 +35,12 @@
     },
     addToCart(produto){
       this.$store.commit('addToCart',produto)
+    }
+  },
+
+  computed:{
+    list: function () {
+    return this.lodash.orderBy(this.produtos,this.$store.state.order)
     }
   },
  

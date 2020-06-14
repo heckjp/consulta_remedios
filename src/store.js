@@ -9,7 +9,7 @@ Vue.use(cookie);
 export default new Vuex.Store({
   state: {
     cart:{
-      items:null,
+      items:[],
       shipping:0,
       subtotal:0,
       total:0
@@ -23,17 +23,15 @@ export default new Vuex.Store({
           console.log(state.cart,'carrinho');
           if(state.cart.items!=null){
             if(state.cart.items.find(x=>x.id==produto.id)){
-              console.log('já existe');
+              alert('O produto já foi adicionado no carrinho')
             } else{
               state.cart.items.push(produto);
               console.log(state.cart, 'carrinho else'); 
             }
           } else{
-            state.cart.items=[];
             state.cart.items.push(produto);
           }
         } else{
-          state.cart.items=[];
           state.cart.items.push(produto);
         }
         cookie.set('cart',JSON.stringify(state.cart))
@@ -42,10 +40,11 @@ export default new Vuex.Store({
     removeFromCart(state,produto){
       state.cart = cookie.get('cart');
       console.log(state.cart, produto);
-      var index=state.cart.items.indexOf(produto.name);
+      var index = state.cart.items.findIndex(p => p.name == produto.name)
+
       console.log(index);
-      // state.cart.items.splice(index,1); 
-      // cookie.set('cart',JSON.stringify(state.cart));
+      state.cart.items.splice(index,1); 
+      cookie.set('cart',JSON.stringify(state.cart));
     },
 
     calculateCartValues(state){
