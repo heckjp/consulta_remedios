@@ -4,24 +4,24 @@
 Aplicação de resolução de teste para a empresa Consulta Remedios  baseado no [repositório] (https://github.com/ConsultaRemedios/frontend-challenge).
 
 ### Tecnologias utilizadas
-VueJS 2.6.11
+[VueJS 2.6.11](https://vuejs.org)
 
-Vue-cli 4.2.2
+[Vue-cli 4.2.2](https://cli.vuejs.org)
 
 ### Dependências do projeto
-Foram utilizadas as seguintes dependências para o desenovolvimento desta aplicação: .
+Foram utilizadas as seguintes dependências para o desenovolvimento desta aplicação: 
 
-[Bootstap] (https://getbootstrap.com)
+[Bootstap](https://getbootstrap.com)
 
-[BootstrapVue] (https://bootstrap-vue.org)
+[BootstrapVue](https://bootstrap-vue.org)
 
-[Axios] (https://github.com/axios/axios)
+[Axios](https://github.com/axios/axios)
 
-[VueCookies] (https://www.npmjs.com/package/vue-cookies)
+[VueCookies](https://www.npmjs.com/package/vue-cookies)
 
-[Vuex] (https://vuex.vuejs.org)
+[Vuex](https://vuex.vuejs.org)
 
-[VueLodash] (https://www.npmjs.com/package/vue-lodash).
+[VueLodash](https://www.npmjs.com/package/vue-lodash)
 
 
 ## Configuração do Projeto
