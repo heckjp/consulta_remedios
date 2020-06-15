@@ -1,36 +1,11 @@
 <template>
     <b-row>
-        <b-col sm="12" md="3">
-        <h1>Games</h1>
+        <b-col sm="12" md="4" offset-md="1">
+        <h1 class="title">Games</h1>
         </b-col>
-        <b-col sm="12" md="2" offset-md="4">
+        <b-col sm="12" md="3" offset-md="4">
             <b-form-select v-model="selected" :options="options" @change="sortProducts()"></b-form-select>
         </b-col>
-       <b-col sm="12" md="3">
-           <div class="cart">
-               <h4 class="float-left">Carrinho</h4><br>
-               <div v-if="cart.items.length==0">
-                    <p><b-img class="cart-img" :src="require('../assets/cart-icon.svg')" fluid></b-img></p>
-                    <p>Até o momento seu carrinho está vazio</p>
-               </div>
-                <div v-if="cart">
-                    <b-list-group>
-                        <b-list-group-item v-for="produto in cart.items" :key="produto.id" class="d-flex justify-content-between align-items-center">
-                            <b-img thumbnail="" :src="getImgUrl(produto.image)" fluid></b-img>
-                            <span>
-                                {{produto.name}}<br>
-                                <strong>{{produto.price.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}}</strong>
-                            </span>
-                            <b-icon icon="x-circle"  @click="removeFromCart(produto)"></b-icon>
-                        </b-list-group-item>
-
-                    </b-list-group>
-                   
-                   
-                </div>
-            </div>
-       </b-col> 
-
     </b-row>
 </template>
 
@@ -40,16 +15,18 @@
             return{
                 selected:null,
                 options:[
-                    {value:null,text:'Ordenar por'},
+                    {value:null,text:'Ordenar por',disabled:'disabled'},
                     {value:'score',text:'Mais populares'},
                     {value:'name',text:'Ordem alfabética'},
                     {value:'price',text:'Preço'},
-                ]
+                ],
+                hover:null
             }
         },
         methods:{
             removeFromCart: function(produto){
              this.$store.commit('removeFromCart',produto)
+             this.$store.commit('calculateCartValues')
             },
             getCart:function(){
                 if(this.$cookies.isKey('cart')){
@@ -71,6 +48,7 @@
         },
         mounted(){
             this.getCart();
+            this.$store.commit('calculateCartValues');
         }
       
        
@@ -101,6 +79,12 @@
 
 .bi-x-circle{
     cursor:pointer
+}
+.title{
+    font-size:48px;
+    font-family: 'Open Sans';
+    font-weight:600;
+    float: left;
 }
 
 </style>
