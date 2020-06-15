@@ -1,24 +1,34 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <b-container fluid id="app">
+    <b-row>
+      <b-col sm="9">
+   <Header class="mb-3"></Header>
+   <home></home>
+      </b-col>
+      <b-col sm="3">
+        <cart></cart>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue';
+import Home from './components/Home.vue';
+import Cart from './components/Cart.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Header,Home,Cart
+  },
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
