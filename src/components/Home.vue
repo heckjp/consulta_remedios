@@ -15,7 +15,7 @@
     export default {
     data(){
     return {
-      baseURL:window.location.origin,
+      baseURL:window.location,
       produtos:[],
       hover:false,
       cart:null,

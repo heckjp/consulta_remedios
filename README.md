@@ -3,6 +3,8 @@
 ## Descrição
 Aplicação de resolução de teste para a empresa Consulta Remedios  baseado no [repositório] (https://github.com/ConsultaRemedios/frontend-challenge).
 
+[*Demo da aplicação*](http://hnsistemas.com.br/teste_cr/)
+
 ### Tecnologias utilizadas
 [VueJS 2.6.11](https://vuejs.org)
 
